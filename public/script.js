@@ -14,17 +14,17 @@ function addMessage(text) {
   messagesDiv.scrollTop = messagesDiv.scrollHeight;
 }
 
-// Receive old messages
+// Load old messages
 socket.on("chat-history", history => {
   messagesDiv.innerHTML = "";
   history.forEach(msg => {
-    addMessage(msg.text);
+    addMessage(msg.text); // 👈 FIX
   });
 });
 
-// Receive new messages
+// New messages
 socket.on("chat-message", msg => {
-  addMessage(msg.text);
+  addMessage(msg.text); // 👈 FIX
 });
 
 form.addEventListener("submit", e => {
