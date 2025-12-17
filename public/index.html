@@ -1,74 +1,41 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>THE BRO CHAT</title>
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <link rel="stylesheet" href="style.css" />
-  <script type="module">
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-app.js";
-  import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
-
- const firebaseConfig = {
-
-  apiKey: "AIzaSyCE2ElbAMMhXyRdlBbonsi4lfg4yByVPGg",
-
-  authDomain: "the-bro-chat.firebaseapp.com",
-
-  projectId: "the-bro-chat",
-
-  storageBucket: "the-bro-chat.firebasestorage.app",
-
-  messagingSenderId: "315017432874",
-
-  appId: "1:315017432874:web:361bb63cb644af992ed853"
-
-};
-
-
-  const app = initializeApp(firebaseConfig);
-  const auth = getAuth(app);
-  const provider = new GoogleAuthProvider();
-
-  window.googleLogin = async () => {
-  try {
-    const result = await signInWithPopup(auth, provider);
-    const user = result.user;
-
-    localStorage.setItem("username", user.displayName);
-    window.location.href = "/chat.html";
-  } catch (err) {
-    console.error("GOOGLE LOGIN ERROR OBJECT:", err);
-    console.error("ERROR CODE:", err.code);
-    console.error("ERROR MESSAGE:", err.message);
-    alert(err.message);
-  }
-};
-
-</script>
-
+  <link rel="stylesheet" href="style.css">
 </head>
 
-<body class="home">
-  <div class="home-container">
+<body class="black">
+
+  <div class="home">
     <h1>THE BRO CHAT</h1>
-    <p>A simple public chat room for everyone.</p>
 
-<a href="/chat.html" class="enter-btn">Enter Chat</a>
+    <a href="chat.html" class="btn">Enter Chat</a>
 
-<button onclick="googleLogin()" class="google-btn">
-  Continue with Google
-</button>
+    <button class="btn google" onclick="googleLogin()">
+      Continue with Google
+    </button>
 
-    <a href="/about.html" class="enter-btn" style="margin-top:20px;">
-  About the devs
-</a>
-
+    <a href="about.html" class="btn">About the devs</a>
   </div>
 
-  <footer class="footer">
-    <p>© 2025 The Bro Chat</p>
-  </footer>
+  <script type="module">
+    import { auth, provider } from "./firebase.js";
+    import { signInWithPopup } from
+      "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+    window.googleLogin = async () => {
+      try {
+        const result = await signInWithPopup(auth, provider);
+        localStorage.setItem("username", result.user.displayName);
+        window.location.href = "chat.html";
+      } catch (e) {
+        alert("Google login failed");
+        console.error(e);
+      }
+    };
+  </script>
+
 </body>
 </html>
