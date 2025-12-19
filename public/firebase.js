@@ -4,12 +4,12 @@ import { getAuth } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-aut
 import { getFirestore } from "https://www.gstatic.com/firebasejs/10.12.2/firebase-firestore.js";
 
 const firebaseConfig = {
-  apiKey: "YOUR_API_KEY",
-  authDomain: "YOUR_PROJECT.firebaseapp.com",
-  projectId: "YOUR_PROJECT_ID",
-  storageBucket: "YOUR_PROJECT.appspot.com",
-  messagingSenderId: "YOUR_SENDER_ID",
-  appId: "YOUR_APP_ID"
+  apiKey: "AIzaSyCE2ElbAMMhXyRdlBbonsi4lfg4yByVPGg",
+  authDomain: "the-bro-chat.firebaseapp.com",
+  projectId: "the-bro-chat",
+  storageBucket: "the-bro-chat.firebasestorage.app",
+  messagingSenderId: "315017432874",
+  appId: "1:315017432874:web:361bb63cb644af992ed853"
 };
 
 export const app = initializeApp(firebaseConfig);
