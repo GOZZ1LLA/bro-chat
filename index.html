@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>THE BRO CHAT</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+
+<body class="black">
+
+  <div class="home">
+    <h1>THE BRO CHAT</h1>
+
+    <a href="chat.html" class="btn">Enter Chat</a>
+
+    <button class="btn google" onclick="googleLogin()">
+      Continue with Google
+    </button>
+
+    <a href="about.html" class="btn">About the devs</a>
+  </div>
+
+  <script type="module">
+    import { auth, provider } from "./firebase.js";
+    import { signInWithPopup } from
+      "https://www.gstatic.com/firebasejs/10.12.2/firebase-auth.js";
+
+    window.googleLogin = async () => {
+      try {
+        const result = await signInWithPopup(auth, provider);
+        localStorage.setItem("username", result.user.displayName);
+        window.location.href = "chat.html";
+      } catch (e) {
+        alert("Google login failed");
+        console.error(e);
+      }
+    };
+  </script>
+
+</body>
+</html>
